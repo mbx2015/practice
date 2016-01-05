@@ -1,0 +1,70 @@
+<h1>{{label_title}}</h1><button class="btn btn-sm btn-danger" (click)="onAdd()" ><span class="glyphicon glyphicon-plus" ></span> New</button>
+<table class="table table-hover table-stripped">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Phone number</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#patient of patients">
+        <td>{{patient.firstName}}</td>
+        <td>{{patient.lastName}}</td>
+        <td>{{patient.age}}</td>
+        <td>{{patient.phoneNumber}}</td>
+        <td>
+            <span (click)="onEdit(patient)" class="glyphicon glyphicon-pencil"></span>
+            <span (click)="onEdit(patient)" class="glyphicon glyphicon-eye-open"></span>
+            <span (click)="onDelete(patient)" class="glyphicon glyphicon-trash"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div *ngIf="selectedPatient" class="well">
+    <h2>{{selectedPatient.lastName}} details!</h2>
+    <div>
+        <div class="row">
+            <label class="col-md-6">first name: </label>
+            <input [(ngModel)]="selectedPatient.firstName" placeholder="first name" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">last name: </label>
+            <input [(ngModel)]="selectedPatient.lastName" placeholder="last name" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">age: </label>
+            <input [(ngModel)]="selectedPatient.age" placeholder="age" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">phone number: </label>
+            <input [(ngModel)]="selectedPatient.phoneNumber" placeholder="phone number" class="col-md-6"/>
+        </div>
+    </div>
+</div>
+<div *ngIf="adding" class="well">
+    <h2>New Patient:</h2>
+    <div>
+        <div class="row">
+            <label class="col-md-6">first name: </label>
+            <input (ngModel)="newP.firstName" placeholder="first name" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">last name: </label>
+            <input (ngModel)="newP.lastName" placeholder="last name" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">age: </label>
+            <input (ngModel)="newP.age" placeholder="age" class="col-md-6"/>
+        </div>
+        <div class="row">
+            <label class="col-md-6">phone number: </label>
+            <input (ngModel)="newP.phoneNumber" placeholder="phone number" class="col-md-6"/>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" style="float: right;" (click)="onSave(newP)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+        </div>
+    </div>
+</div>
